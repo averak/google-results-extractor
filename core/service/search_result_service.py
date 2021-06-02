@@ -3,6 +3,7 @@ from pycrawl import PyCrawl
 
 from core.model.search_result_model import SearchResultModel
 from core.repository.search_result_repository import SearchResultRepository
+from core.util.search_result_util import search_result_builder
 from core.config.crawler_config import USER_AGENT, DELAY, DEPTH_LIMIT
 
 
@@ -22,13 +23,6 @@ class SearchResultService:
                 user_agent=USER_AGENT,
             )
             print(f"ACCESS({page_index}): {doc.url}")
-
-            # pycrawlオブジェクトを検索結果モデルに変換
-            def search_result_builder(col):
-                return SearchResultModel(
-                    title=col.css("h3").inner_text(),
-                    url=col.css("a").attr("href"),
-                )
 
             columns = doc.css("#res").css(".yuRUbf")
             result.extend([search_result_builder(col) for col in columns])
