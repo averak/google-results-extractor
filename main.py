@@ -14,4 +14,4 @@ keywords = [
 for keyword in keywords:
     print(keyword)
     search_results = search_result_service.fetch_search_results(f"site;{keyword}")
-    search_result_service.export_search_results(search_results, f"data/{keyword}.csv")
+    search_result_service.export_search_results(search_results, keyword)

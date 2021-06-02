@@ -42,5 +42,5 @@ class SearchResultService:
         return result
 
     # 検索結果をエクスポート
-    def export_search_results(self, search_results: list[SearchResultModel], file_name: str) -> None:
-        self.search_result_repository.bulk_insert(search_results)
+    def export_search_results(self, search_results: list[SearchResultModel], keyword: str) -> None:
+        self.search_result_repository.bulk_insert(search_results, keyword)
